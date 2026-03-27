@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Wonderland</title>
+    <title>Dog Wonderland - Home</title>
+
     <style>
         * {
             margin: 0;
@@ -24,21 +25,6 @@
             text-align: center;
         }
         
-        nav {
-            background-color: #faa7d5;
-            padding: 1rem;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-        
-        nav a:hover {
-            text-decoration: underline;
-        }
-        
         main {
             padding: 2rem;
         }
@@ -54,40 +40,120 @@
             padding: 1rem;
             margin-top: 2rem;
         }
+
+        input[type="text"] {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #f89eb8;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            transition: background 0.3s;
+        }
+        
+        .button:hover {
+            background: #fb6f90;
+        }
+
     </style>
+
+    <script>
+        // SKU-to-category mapping
+        var skuCategoryMap = {
+            'DT-001': 'Dog Toys',
+            'DF-002': 'Dog Food',
+            'DA-003': 'Dog Accessories'
+        };
+
+        function mapCategoryFromSKU(sku) {
+            return skuCategoryMap[sku.trim()] || '';
+        }
+
+        // Auto populate form fields with dummy data for testing
+        function autoPopulateForm() {
+            var customerNames = ['John Doe', 'Jane Smith', 'Alice Johnson'];
+            var randomCustName = customerNames[Math.floor(Math.random() * customerNames.length)];
+            var orderIDNum = Math.floor(Math.random() * 100000);
+            var randomOrderID = 'ORD' + orderIDNum;
+            var subtotals = ['49.99', '79.99', '129.99'];
+            var randomSubtotal = subtotals[Math.floor(Math.random() * subtotals.length)];
+            var skus = Object.keys(skuCategoryMap);
+            var randomSKU = skus[Math.floor(Math.random() * skus.length)];
+            var randomCategory = mapCategoryFromSKU(randomSKU);
+            var randomQuantity = Math.floor(Math.random() * 5) + 1;
+            var promoCodes = ['DOGLOVER20', 'PUPPYLOVE10', 'FURRYFRIEND15'];
+            var randomPromo = promoCodes[Math.floor(Math.random() * promoCodes.length)];
+
+            document.getElementById('custName').value = randomCustName;
+            document.getElementById('orderID').value = randomOrderID;
+            document.getElementById('subtotal').value = randomSubtotal;
+            document.getElementById('category').value = randomCategory;
+            document.getElementById('SKU').value = randomSKU;
+            document.getElementById('quantity').value = randomQuantity;
+            document.getElementById('promoCode').value = randomPromo;
+
+            localStorage.setItem('custName', randomCustName);
+            localStorage.setItem('orderID', randomOrderID);
+            localStorage.setItem('subtotal', randomSubtotal);
+            localStorage.setItem('category', randomCategory);
+            localStorage.setItem('SKU', randomSKU);
+            localStorage.setItem('quantity', randomQuantity);
+            localStorage.setItem('promoCode', randomPromo);
+        }
+    </script>
 </head>
+
 <body>
     <header>
         <h1>🐕 Dog Wonderland 🌈</h1>
-        <p>Your Ultimate Destination for Dog Lovers</p>
+        <p>Simulated Dog Website Landing Page</p>
     </header>
-    
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#breeds">Breeds</a>
-        <a href="#care">Care</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    
+
     <main>
-        <section id="home">
+        <section id="dog">
             <h2>Welcome to Dog Wonderland</h2>
-            <p>Discover everything you need to know about dogs!</p>
+            <p>Discover products which you can buy for your furry friend!</p>
         </section>
         
-        <section id="breeds">
-            <h2>Dog Breeds</h2>
-            <p>Learn about different dog breeds and their characteristics.</p>
+        <section id="form">
+            <form>
+                <label for="custName">Customer Name:</label>
+                <input type="text" id="custName" name="custName"><br>
+
+                <label for="orderID">Order ID:</label>
+                <input type="text" id="orderID" name="orderID"><br>
+
+                <label for="subtotal">Subtotal:</label>
+                <input type="text" id="subtotal" name="subtotal"><br>
+
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category"><br>
+
+                <label for="SKU">SKU:</label>
+                <input type="text" id="SKU" name="SKU" oninput="syncCategoryFromSKU()"><br>
+
+                <label for="quantity">Quantity:</label>
+                <input type="text" id="quantity" name="quantity"><br>
+
+                <label for="promoCode">Promo Code:</label>
+                <input type="text" id="promoCode" name="promoCode"><br>
+
+                <button type="button" class="button" style="font-size: 18px;" onclick="autoPopulateForm()">Auto Populate Form</button>
+                <a href="confirmation.html" class="button">Submit</a>
+            </form>
         </section>
-        
-        <section id="care">
-            <h2>Dog Care</h2>
-            <p>Tips and advice for keeping your dog healthy and happy.</p>
-        </section>
+
     </main>
     
-    <footer>
-        <p>&copy; 2026 Dog Wonderland. All rights reserved.</p>
-    </footer>
+
 </body>
 </html>
