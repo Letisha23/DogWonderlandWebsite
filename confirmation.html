@@ -14,13 +14,13 @@
         // Push all the data to the Google Tag Manager dataLayer
         window.dataLayer.push({
             'event': 'UTTLoaded', // This is a custom event name for triggering tags
-            'custName': randomCustName,
-            'orderID': randomOrderID,
-            'subtotal': randomSubtotal,
-            'category': randomCategory,
-            'SKU': randomSKU,
-            'quantity': randomQuantity,
-            'promoCode': randomPromo
+            'custName': localStorage.getItem('custName'),
+            'orderID': localStorage.getItem('orderID'),
+            'subtotal': localStorage.getItem('subtotal'),
+            'category': localStorage.getItem('category'),
+            'SKU': localStorage.getItem('SKU'),
+            'quantity': localStorage.getItem('quantity'),
+            'promoCode': localStorage.getItem('promoCode')
         });
     </script>
  
