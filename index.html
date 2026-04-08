@@ -86,7 +86,7 @@
             document.getElementById('customerID').value = randomCustomerID;
             localStorage.setItem('customerID', randomCustomerID);
             window.dataLayer.push({
-                'event': 'IdentifyInvoked',
+                'event': 'signUp', 
                 'customerID': randomCustomerID
             });
         }
@@ -122,7 +122,6 @@
             document.getElementById('quantity').value = randomQuantity;
             document.getElementById('promoCode').value = randomPromo;
 
-            localStorage.setItem('custName', randomCustName);
             localStorage.setItem('orderID', randomOrderID);
             localStorage.setItem('subtotal', randomSubtotal);
             localStorage.setItem('category', randomCategory);
