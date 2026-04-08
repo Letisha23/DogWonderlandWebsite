@@ -28,7 +28,7 @@
         }
         
         header {
-            background-color: #f688c4;
+            background-color: #f37ba1;
             color: white;
             padding: 1rem;
             text-align: center;
@@ -41,13 +41,16 @@
         section {
             margin: 2rem 0;
         }
-        
-        footer {
-            background-color: #f688c4;
+
+        .banner {
+            background-color: #f392b1;
             color: white;
             text-align: center;
             padding: 1rem;
-            margin-top: 2rem;
+        }
+
+        .banner h2 {
+            margin-bottom: 0.5rem;
         }
 
         input[type="text"] {
@@ -61,7 +64,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 12px 30px;
-            background: #f89eb8;
+            background: #f37ba1;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -70,12 +73,24 @@
         }
         
         .button:hover {
-            background: #fb6f90;
+            background: #e66b96;
         }
 
     </style>
 
     <script>
+        // sign up a new customer and generate a random customer ID
+        function signUp() {
+            var customerIDNum = Math.floor(Math.random() * 1000000);
+            var randomCustomerID = 'CUST' + customerIDNum;
+            document.getElementById('customerID').value = randomCustomerID;
+            localStorage.setItem('customerID', randomCustomerID);
+            window.dataLayer.push({
+                'event': 'IdentifyInvoked',
+                'customerID': randomCustomerID
+            });
+        }
+
         // SKU-to-category mapping
         var skuCategoryMap = {
             'DT-001': 'Dog Toys',
@@ -89,8 +104,6 @@
 
         // Auto populate form fields with dummy data for testing
         function autoPopulateForm() {
-            var customerNames = ['John Doe', 'Jane Smith', 'Alice Johnson'];
-            var randomCustName = customerNames[Math.floor(Math.random() * customerNames.length)];
             var orderIDNum = Math.floor(Math.random() * 100000);
             var randomOrderID = 'ORD' + orderIDNum;
             var subtotals = ['49.99', '79.99', '129.99'];
@@ -101,8 +114,7 @@
             var randomQuantity = Math.floor(Math.random() * 5) + 1;
             var promoCodes = ['DOGLOVER20', 'PUPPYLOVE10', 'FURRYFRIEND15'];
             var randomPromo = promoCodes[Math.floor(Math.random() * promoCodes.length)];
-
-            document.getElementById('custName').value = randomCustName;
+            
             document.getElementById('orderID').value = randomOrderID;
             document.getElementById('subtotal').value = randomSubtotal;
             document.getElementById('category').value = randomCategory;
@@ -119,6 +131,7 @@
             localStorage.setItem('promoCode', randomPromo);
             
         }
+
     </script>
 </head>
 
@@ -130,23 +143,27 @@
         </iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-     
+
+
     <header>
         <h1>🐕 Dog Wonderland 🌈</h1>
-        <p>Simulated Dog Website Landing Page</p>
+        <p>Simulated Dog Website Landing Page</p>   
     </header>
+             
+    <div class="banner">
+        <h2>Sign Up now</h2>
+        <p>Click here to sign up as a member of Dog Wonderland. This will automatically generate a customer ID.</p>
+        <button class="button" onclick="signUp()">Sign Up</button>
+    </div>
 
     <main>
-        <section id="dog">
+        <section id="welcome">
             <h2>Welcome to Dog Wonderland</h2>
             <p>Discover products which you can buy for your furry friend!</p>
         </section>
         
         <section id="form">
             <form>
-                <label for="custName">Customer Name:</label>
-                <input type="text" id="custName" name="custName"><br>
-
                 <label for="orderID">Order ID:</label>
                 <input type="text" id="orderID" name="orderID"><br>
 
