@@ -130,11 +130,8 @@
             localStorage.setItem('quantity', randomQuantity);
             localStorage.setItem('promoCode', randomPromo);
 
-        // Push all the data to the Google Tag Manager dataLayer
-        var storedCustomerID = localStorage.getItem('customerID');
         window.dataLayer.push({
             'event': 'conversionDataReady', // This is a custom event name for triggering tags
-            'customerID': storedCustomerID,
             'orderID': randomOrderID,
             'subtotal': randomSubtotal,
             'category': randomCategory,
