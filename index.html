@@ -83,6 +83,7 @@
         function signUp() {
             var customerIDNum = Math.floor(Math.random() * 1000000);
             var randomCustomerID = 'CUST' + customerIDNum;
+            console.log('Generated Customer ID: ' + randomCustomerID);
             document.getElementById('customerID').value = randomCustomerID;
             localStorage.setItem('customerID', randomCustomerID);
             window.dataLayer.push({
@@ -174,6 +175,9 @@
         
         <section id="form">
             <form>
+                <label for="customerID">Customer ID:</label>
+                <input type="text" id="customerID" name="customerID"><br>
+
                 <label for="orderID">Order ID:</label>
                 <input type="text" id="orderID" name="orderID"><br>
 
